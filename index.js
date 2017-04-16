@@ -8,6 +8,9 @@ var myBlogs = require('./data').myBlogs
 
 application.use(cors());
 
+var bodyParser = require('body-parser');
+application.use(bodyParser.json());
+
 application.get('/', function(req, res) {
   pageId = req.query.page ? parseInt(req.query.page) : 1
   result = {
@@ -23,6 +26,28 @@ application.post('/post/:id/like', function(req, res) {
   res.json(item);
 });
 
+application.post('/post/:id/edit', function(req, res) {
+  var result = req.body;
+  var error = {};
+
+  if (req.body.title < 5) {
+    error.title = 'Should be longer the 5 symbols!';
+  }
+  if (req.body.createdAt === '') {
+    error.createdAt = 'Required!';
+  }
+  if (req.body.autor === '') {
+    error.author = 'Required!';
+  }
+
+  console.log(result);
+  if (error !== null)
+    result['error'] = error;
+
+  console.log(result);
+  res.json(result);
+});
+
 application.get('/post/:id', function(req, res) {
   res.json(myBlogs[req.params.id - 1]);
 });
@@ -35,7 +60,7 @@ application.get('/search', function(req, res) {
         return blog;
     });
 
-  res.json(foundBlogs);  
+  res.json(foundBlogs);
 });
 
 application.listen(3001, function() {
