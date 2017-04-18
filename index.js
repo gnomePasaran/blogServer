@@ -4,7 +4,8 @@ var _ = require('lodash');
 
 var cors = require('cors');
 
-var myBlogs = require('./data').myBlogs
+var myBlogs = require('./data').myBlogs;
+var myComments = require('./comments').myComments;
 
 application.use(cors());
 
@@ -40,11 +41,19 @@ application.post('/post/:id/edit', function(req, res) {
     error.author = 'Required!';
   }
 
-  console.log(result);
   if (error !== null)
     result['error'] = error;
 
-  console.log(result);
+  res.json(result);
+});
+
+application.get('/post/:id/comments', function(req, res) {
+  var result = _.compact(_.map(myComments, function(comment) {
+    if (comment.user_id == req.params.id)
+      return comment;
+  }));
+
+  return setTimeout(function() { return res.json(result); }, 5000);
   res.json(result);
 });
 
