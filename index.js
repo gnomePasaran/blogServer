@@ -31,13 +31,13 @@ application.post('/post/:id/edit', function(req, res) {
   var result = req.body;
   var error = {};
 
-  if (req.body.title < 5) {
+  if (result.title < 5) {
     error.title = 'Should be longer the 5 symbols!';
   }
-  if (req.body.createdAt === '') {
+  if (result.createdAt === '') {
     error.createdAt = 'Required!';
   }
-  if (req.body.autor === '') {
+  if (result.autor === '') {
     error.author = 'Required!';
   }
 
@@ -54,6 +54,25 @@ application.get('/post/:id/comments', function(req, res) {
   }));
 
   return setTimeout(function() { return res.json(result); }, 5000);
+});
+
+application.post('/post/:id/comments/new', function(req, res) {
+  var result = req.body;
+  var error = {};
+
+  if (result.text < 5) {
+    error.text = 'Should be longer then 5 symbols!';
+  }
+  if (result.phone === '') {
+    error.phone = 'Required!';
+  }
+
+  if (error !== null)
+    result['error'] = error;
+
+  result['id'] = Math.floor(Math.random() * (1000 - 10)) + 10;
+  result['user_id'] = req.params.id;
+
   res.json(result);
 });
 
