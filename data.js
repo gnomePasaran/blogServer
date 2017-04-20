@@ -9,7 +9,7 @@ module.exports = {
       text: '1 - Bright light is almost blinding',
       meta: {
         author: 'John Doe',
-        createdAt: '17.12.2016',
+        createdAt: '2016-03-12',
         updatedAt: '17.12.2016',
         count: 555
       }
@@ -23,6 +23,8 @@ module.exports = {
       text: '2 - Back in Black, I hit the sack',
       meta: {
         author: 'Angus Young',
+        createdAt: '2016-03-12',
+        updatedAt: '17.12.2016',
         count: 259
       }
     },
@@ -34,6 +36,8 @@ module.exports = {
       },
       text: '3 - Smoke on the water, and fire in the sky',
       meta: {
+        createdAt: '2016-03-12',
+        updatedAt: '17.12.2016',
         count: 11,
       },
     },

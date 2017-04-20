@@ -41,7 +41,7 @@ application.post('/post/:id/edit', function(req, res) {
     error.author = 'Required!';
   }
 
-  if (error !== null)
+  if (error.length > 0)
     result['error'] = error;
 
   res.json(result);
@@ -67,7 +67,7 @@ application.post('/post/:id/comments/new', function(req, res) {
     error.phone = 'Required!';
   }
 
-  if (error !== null)
+  if (error.length > 0)
     result['error'] = error;
 
   result['id'] = Math.floor(Math.random() * (1000 - 10)) + 10;
