@@ -4,7 +4,7 @@ module.exports = {
       id: 1,
       user_id: 1,
       phone: '(111)-111-1111',
-      text: 'Dark night steel there shining',
+      text: 'Dark night still there shining',
     },
     {
       id: 2,
